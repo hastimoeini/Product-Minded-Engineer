@@ -1,0 +1,951 @@
+/* استایل مشترک همه صفحه‌ها: پس‌زمینه روشن، کارت‌های سفید گرد، متن سرمه‌ای و یک رنگ تأکیدی خردلی. */
+
+
+/* ---------- ۱. فونت ----------
+   وزیرمتن داخل پوشه fonts است، بدون سرویس خارجی. یک فایل برای همه وزن‌ها. */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap; /* تا فونت برسد، متن با فونت سیستم نشان داده شود و صفحه خالی نماند */
+}
+
+
+/* ---------- ۲. متغیرها ----------
+   رنگ‌ها، اندازه‌ها و فاصله‌ها فقط این‌جا تعریف می‌شوند و بقیه فایل از همین‌ها استفاده می‌کند. */
+:root {
+  /* رنگ‌ها (کنتراست همه متن‌ها با پس‌زمینه‌شان اندازه‌گیری شده و حداقل ۴٫۵ به ۱ است) */
+  --page-bg: #f2f5fa;      /* پس‌زمینه کل صفحه */
+  --card-bg: #ffffff;      /* پس‌زمینه کارت‌ها */
+  --ink: #1b2a4a;          /* متن اصلی: سرمه‌ای (کنتراست ۱۴ به ۱ روی سفید) */
+  --ink-soft: #5a6785;     /* متن توضیحی (کنتراست ۵٫۷ به ۱ روی سفید) */
+  --line: #e2e7f0;         /* خط‌های جداکننده (تزئینی) */
+  --dot: #cdd6e6;          /* نقطه‌های الگوی سربرگ (تزئینی) */
+  --accent: #f0bf3a;       /* تنها رنگ تأکیدی: خردلی (فقط پس‌زمینه، نه متن) */
+  --accent-ink: #1b2a4a;   /* متن روی خردلی (کنتراست ۸٫۳ به ۱) */
+  --accent-strong: #8a6200; /* خردلی تیره برای متن، مثل شماره جلد (کنتراست ۵ به ۱) */
+  --accent-wash: #fdf4d9;  /* خردلی خیلی روشن برای پس‌زمینه جلد و برچسب */
+  --focus: #1b2a4a;        /* رنگ حلقه تمرکز کیبورد؛ تیره تا روی سفید دیده شود */
+
+  /* اندازه متن: یک مقیاس ثابت ۱۲ / ۱۴ / ۱۶ / ۱۸ / ۲۴ / ۳۲ / ۴۰ پیکسل */
+  --text-xs: 0.75rem;   /* ۱۲ */
+  --text-sm: 0.875rem;  /* ۱۴ */
+  --text-md: 1rem;      /* ۱۶: متن اصلی */
+  --text-lg: 1.125rem;  /* ۱۸ */
+  --text-xl: 1.5rem;    /* ۲۴ */
+  --text-2xl: 2rem;     /* ۳۲ */
+  --text-3xl: 2.5rem;   /* ۴۰ */
+
+  /* فاصله‌ها: مضرب‌های ۴ و ۸ پیکسل */
+  --space-1: 0.25rem;   /* ۴ */
+  --space-2: 0.5rem;    /* ۸ */
+  --space-3: 0.75rem;   /* ۱۲ */
+  --space-4: 1rem;      /* ۱۶ */
+  --space-6: 1.5rem;    /* ۲۴ */
+  --space-8: 2rem;      /* ۳۲ */
+  --space-12: 3rem;     /* ۴۸ */
+
+  --radius-card: 16px;  /* گردی گوشه کارت‌های بزرگ */
+  --radius-small: 16px; /* گردی گوشه کارت‌های کوچک */
+  --radius-pill: 999px; /* گوشه کاملاً گرد، برای دکمه‌ها */
+  --shadow: 0 1px 4px rgba(27, 42, 74, 0.06); /* سایه خیلی کم‌رنگ زیر کارت‌ها */
+
+  --tap-size: 44px;     /* حداقل اندازه هر چیز قابل لمس روی موبایل */
+
+  --font-main: "Vazirmatn", Tahoma, sans-serif;
+  /* فونت monospace برای متن‌های انگلیسی کوچک؛ از فونت‌های خود سیستم، بدون دانلود */
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
+
+  --page-width: 72rem;  /* حداکثر عرض محتوا روی صفحه‌های بزرگ */
+}
+
+
+/* ---------- ۳. پایه صفحه ---------- */
+* {
+  box-sizing: border-box; /* عرض هر جعبه شامل حاشیه داخلی‌اش هم باشد؛ محاسبه را ساده می‌کند */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: var(--text-md);
+  line-height: 1.75;
+  color: var(--ink);
+  background: var(--page-bg);
+}
+
+/* ظرف وسط صفحه که محتوا را در عرض مناسب نگه می‌دارد */
+.page {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+a {
+  color: var(--ink);
+  touch-action: manipulation; /* روی موبایل، لمس لینک بدون تأخیر اجرا شود */
+}
+
+/* حلقه دور هر چیز قابل کلیک، وقتی با کیبورد (کلید Tab) انتخاب می‌شود */
+a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 {
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+/* متن انگلیسی کوچک با فونت monospace */
+.label-en {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* نام کتاب هیچ‌وقت وسط کلمه (کنار خط تیره) به خط بعد نشکند */
+.book-name {
+  white-space: nowrap;
+}
+
+/* عبارت‌های کوتاهی که نباید وسطشان خط بشکند، مثل «فصل به فصل» */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* نام انگلیسی فصل در برچسب قسمت‌ها هم یک‌تکه بماند */
+.episode-meta .label-en {
+  white-space: nowrap;
+}
+
+
+/* ---------- ۴. لینک «پرش به محتوا» ----------
+   با اولین Tab ظاهر می‌شود؛ در حالت عادی پنهان است. */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  background: var(--ink);
+  color: var(--card-bg);
+  border-radius: var(--radius-pill);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+
+/* ---------- ۵. سربرگ سایت ----------
+   پس‌زمینه‌اش نقطه‌های کم‌رنگ تکرارشده است. */
+.site-header {
+  background-image: radial-gradient(var(--dot) 1.2px, transparent 1.4px);
+  background-size: 18px 18px;
+  padding: var(--space-6) 0 var(--space-8);
+}
+
+.site-header .page {
+  display: flex;
+  flex-wrap: wrap;           /* در موبایل اگر جا نشد، منو به خط بعد برود */
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-8);
+}
+
+/* نشان سایت: آیکون + نام + شعار کوتاه */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;            /* آیکون در صفحه باریک کوچک‌تر نشود */
+}
+
+/* رنگ‌های آیکون سایت هم از متغیرها می‌آیند */
+.brand-icon .icon-body   { fill: var(--ink); }
+.brand-icon .icon-spine  { fill: var(--accent); }
+.brand-icon .icon-play   { fill: var(--card-bg); }
+
+.brand-name {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.brand-tagline {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* منوی اصلی */
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* هر لینک منو حداقل ۴۴ پیکسل ارتفاع دارد تا روی موبایل راحت لمس شود */
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-size);
+  padding: 0 var(--space-3);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+}
+
+.site-nav a:hover {
+  border-bottom-color: var(--line);
+}
+
+/* صفحه‌ای که الان در آن هستیم با خط زیر خردلی مشخص می‌شود */
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--accent);
+}
+
+
+/* ---------- ۶. کارت‌ها ----------
+   هر بخش اصلی صفحه داخل یک کارت سفید با گوشه گرد است. */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: var(--space-6);
+}
+
+/* عنوان بالای هر کارت، با آیکون کوچک کنارش */
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+.card-title svg {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* ---------- ۷. آیکون‌ها ----------
+   همه خطی‌اند و رنگشان از متن اطراف می‌آید. */
+.icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* ---------- ۸. دکمه‌ها ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-size);
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background: var(--ink);
+  color: var(--card-bg);
+}
+
+/* دکمه اصلی هر صفحه: خردلی. در هر صفحه فقط یکی از این دکمه‌ها هست */
+.button-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.button-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--card-bg);
+}
+
+/* فلش داخل دکمه‌ها؛ در راست‌به‌چپ، «جلو» یعنی سمت چپ */
+.arrow {
+  font-family: var(--font-mono);
+}
+
+
+/* ---------- ۹. جلد قسمت ----------
+   جلد با HTML و CSS ساخته می‌شود، نه عکس. برای قسمت جدید فقط متن عوض می‌شود. */
+.cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  aspect-ratio: 1 / 1;       /* جلد همیشه مربع بماند و صفحه هنگام بارگذاری جابه‌جا نشود */
+  background: linear-gradient(var(--accent-wash), var(--card-bg) 55%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  text-align: center;
+  text-decoration: none;     /* جلد لینک است، اما متنش نباید زیرخط داشته باشد */
+  color: var(--ink);
+  direction: ltr;            /* محتوای جلد انگلیسی است و چپ‌به‌راست نوشته می‌شود */
+}
+
+.cover-number {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--accent-strong);
+  font-size: var(--text-xl);
+}
+
+.cover-title {
+  font-weight: 800;
+  font-size: var(--text-2xl);
+  line-height: 1.15;
+}
+
+.cover-chapter {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  background: var(--accent-wash);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
+  white-space: nowrap;
+}
+
+/* نسخه کوچک جلد برای فهرست «سایر قسمت‌ها» */
+.cover-small {
+  width: 88px;
+  flex-shrink: 0;
+  padding: var(--space-2);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.cover-small .cover-number { font-size: var(--text-xs); }
+.cover-small .cover-title  { font-size: var(--text-xs); }
+
+
+/* ---------- ۱۰. کارت اصلی صفحه خانه (تازه‌ترین قسمت + سایر قسمت‌ها) ---------- */
+.hero {
+  display: grid;
+  gap: var(--space-8);
+}
+
+/* بخش تازه‌ترین قسمت: جلد بزرگ + اطلاعات */
+.latest {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+/* در موبایل جلد کوچک است تا عنوان و دکمه «ببینید» در همان صفحه اول دیده شوند
+   (یافته friction log؛ در تبلت و لپ‌تاپ بزرگ‌تر می‌شود) */
+.latest .cover {
+  max-width: 12.5rem;
+  width: 100%;
+  padding: var(--space-4);
+  box-shadow: var(--shadow);
+}
+
+.latest .cover .cover-title {
+  font-size: var(--text-xl);
+}
+
+/* خط کوچک «# ۰۲ • فصل ۳، بخش دوم» */
+.episode-meta {
+  display: block;
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+.meta-dot {
+  margin: 0 var(--space-2);
+}
+
+.latest-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  margin: var(--space-1) 0 var(--space-3);
+}
+
+.latest-summary {
+  color: var(--ink-soft);
+  max-width: 34rem;          /* حدود ۶۵ حرف در هر خط، برای راحتی خواندن */
+}
+
+/* ردیف دکمه‌ها */
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* ستون «سایر قسمت‌ها» */
+.other-episodes-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.other-episodes-head h2 {
+  font-size: var(--text-lg);
+}
+
+.episode-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* هر ردیف فهرست: جلد کوچک + عنوان و برچسب؛ کل ردیف قابل کلیک است */
+.episode-row a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.episode-row:last-child a {
+  border-bottom: none;
+}
+
+.episode-row-title {
+  display: block;
+  font-weight: 700;
+  font-size: var(--text-md);
+}
+
+.episode-row a:hover .episode-row-title {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+}
+
+
+/* ---------- ۱۱. ردیف پایین صفحه خانه: کجا ببینیم + معرفی کوتاه ---------- */
+.home-bottom {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+/* فهرست پلتفرم‌ها (آپارات، یوتیوب، ...) */
+.platform-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* هر پلتفرم: یک قرص با آیکون و نام */
+.platform {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-size);
+  padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--page-bg);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a.platform:hover {
+  background: var(--accent-wash);
+}
+
+/* دایره سرمه‌ای دور آیکون هر پلتفرم */
+.platform-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--card-bg);
+}
+
+.platform-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.home-about p {
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+
+
+/* ---------- ۱۲. صفحه «درباره ما» ---------- */
+.about-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+/* ستون اصلی درباره ما: کارت‌ها زیر هم با فاصله */
+.about-main {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.about-main p {
+  max-width: 40rem;
+}
+
+.page-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  margin-bottom: var(--space-4);
+}
+
+/* میزبان‌ها */
+.host-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.host {
+  background: var(--page-bg);
+  border-radius: var(--radius-small);
+  padding: var(--space-4) var(--space-6);
+}
+
+.host-name {
+  display: block;
+  font-weight: 700;
+}
+
+.host-role {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+/* شناسنامه: هر dt عنوان و هر dd مقدار است. در موبایل زیر هم قرار می‌گیرند. */
+.spec-list {
+  margin: 0;
+  display: grid;
+  gap: 0 var(--space-6);
+}
+
+.spec-list dt {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+.spec-list dd {
+  margin: 0 0 var(--space-3);
+  font-weight: 600;
+}
+
+
+/* ---------- ۱۲-الف. صفحه هر قسمت (پوشه episodes) ---------- */
+
+/* لینک برگشت به فهرست قسمت‌ها، بالای صفحه */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-size);
+  margin-bottom: var(--space-2);
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
+.episode-page {
+  display: grid;
+  gap: var(--space-6);
+}
+
+/* تیتر صفحه قسمت */
+.episode-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  margin: var(--space-1) 0 var(--space-3);
+}
+
+/* قاب ویدیو: همیشه نسبت ۱۶ به ۹، تا صفحه هنگام بارگذاری ویدیو جابه‌جا نشود */
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-small);
+  overflow: hidden;
+  background: var(--ink);
+  margin: var(--space-6) 0 var(--space-4);
+  max-width: 52rem;          /* روی لپ‌تاپ ویدیو آن‌قدر بزرگ نشود که ایده‌های کلیدی خیلی پایین بروند */
+}
+
+/* خود پخش‌کننده آپارات کل قاب را پر می‌کند */
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* وقتی ویدیو هنوز منتشر نشده: یک پیام ساده وسط قاب */
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  text-align: center;
+  color: var(--card-bg);
+}
+
+.video-placeholder p {
+  margin: 0;
+}
+
+.video-placeholder .button {
+  border-color: var(--card-bg);
+  color: var(--card-bg);
+}
+
+.video-placeholder .button:hover {
+  background: var(--card-bg);
+  color: var(--ink);
+}
+
+/* فهرست ایده‌های کلیدی: شماره‌دار، با شماره در دایره خردلی */
+.idea-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: idea;        /* شمارنده‌ای به اسم idea از صفر شروع می‌شود */
+  display: grid;
+  gap: var(--space-4);
+  max-width: 44rem;           /* حدود ۷۰ حرف در هر خط، تا خواندن روی صفحه پهن خسته‌کننده نشود */
+}
+
+.idea-list li {
+  counter-increment: idea;    /* هر آیتم یکی به شمارنده اضافه می‌کند */
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+/* دایره شماره؛ عدد با اعداد فارسی نوشته می‌شود */
+.idea-list li::before {
+  content: counter(idea, persian);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.idea-list strong {
+  display: block;
+}
+
+.idea-list p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* قسمت قبلی / بعدی */
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.pager-link {
+  display: block;
+  min-height: var(--tap-size);
+  padding: var(--space-4) var(--space-6);
+  background: var(--card-bg);
+  border-radius: var(--radius-small);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+}
+
+.pager-link:hover .pager-title {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+}
+
+/* «قسمت بعدی» در سمت چپ (انتهای سطر در راست‌به‌چپ) قرار می‌گیرد */
+.pager-next {
+  grid-column: 2;
+  text-align: end;
+}
+
+.pager-label {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.pager-title {
+  font-weight: 700;
+}
+
+
+/* ---------- ۱۲-ب. نقشه سفر ----------
+   یک خط مسیر عمودی؛ هر بخش کتاب یک منطقه و هر قسمت یک ایستگاه است. */
+.journey {
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  position: relative;
+  max-width: 44rem;           /* روی صفحه پهن، کارت‌ها بیش از حد کشیده نشوند */
+}
+
+/* خود خط مسیر: یک خط‌چین عمودی در سمت راست */
+.journey::before {
+  content: "";
+  position: absolute;
+  top: var(--space-4);
+  bottom: var(--space-4);
+  inset-inline-start: 15px;
+  border-inline-start: 2px dashed var(--ink-soft);
+}
+
+/* هر بخش کتاب (مبانی، Develop، ...) */
+.journey-part {
+  position: relative;
+  padding-inline-start: var(--space-12);
+  padding-bottom: var(--space-8);
+}
+
+.journey-part:last-child {
+  padding-bottom: 0;
+}
+
+/* نشانگر بخش: مربع سرمه‌ای روی خط مسیر */
+.journey-part-marker {
+  position: absolute;
+  inset-inline-start: 4px;
+  top: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--ink);
+}
+
+.journey-part-head {
+  margin-bottom: var(--space-3);
+}
+
+.journey-part-name {
+  font-size: var(--text-lg);
+}
+
+.journey-part-chapters {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* ایستگاه‌ها (قسمت‌ها) داخل هر بخش */
+.station-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.station {
+  position: relative;
+}
+
+/* دایره ایستگاه روی خط مسیر */
+.station::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(-1 * var(--space-12) + 9px);
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--page-bg);
+}
+
+/* کارت هر ایستگاه: جلد کوچک + عنوان؛ کل کارت قابل کلیک است */
+.station a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  background: var(--card-bg);
+  border-radius: var(--radius-small);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+}
+
+.station a:hover .episode-row-title {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+}
+
+.station .cover-small {
+  width: 72px;
+  box-shadow: none;
+}
+
+/* بخشی از کتاب که هنوز قسمتی برایش ساخته نشده */
+.journey-empty {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius-small);
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+/* بخش‌های آینده با نشانگر توخالی، تا فرق «انجام‌شده» و «آینده» فقط با رنگ نباشد */
+.journey-part.is-upcoming .journey-part-marker {
+  background: var(--page-bg);
+  border: 3px solid var(--ink-soft);
+}
+
+.journey-intro {
+  color: var(--ink-soft);
+  max-width: 40rem;
+}
+
+
+/* ---------- ۱۳. فاصله پایین صفحه ----------
+   سایت پاورقی ندارد؛ این فاصله نمی‌گذارد آخرین کارت به لبه پایین صفحه بچسبد. */
+main.page {
+  padding-bottom: var(--space-12);
+}
+
+
+/* ---------- ۱۴. تبلت (از عرض ۷۶۸ پیکسل) ----------
+   تا این عرض همه‌چیز یک‌ستونه است (طراحی اول برای موبایل). */
+@media (min-width: 768px) {
+  .card {
+    padding: var(--space-8);
+  }
+
+  /* جلد کنار اطلاعات تازه‌ترین قسمت قرار بگیرد و اندازه کاملش را بگیرد */
+  .latest {
+    grid-template-columns: 15rem 1fr;
+  }
+
+  .latest .cover {
+    max-width: 20rem;
+    padding: var(--space-6);
+  }
+
+  .latest .cover .cover-title {
+    font-size: var(--text-2xl);
+  }
+
+  .latest-title,
+  .episode-title {
+    font-size: var(--text-3xl);
+  }
+
+  .host-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* شناسنامه دوستونه می‌شود: عنوان در یک ستون، مقدار در ستون دیگر */
+  .spec-list {
+    grid-template-columns: max-content 1fr;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .spec-list dd {
+    margin-bottom: 0;
+  }
+}
+
+
+/* ---------- ۱۵. لپ‌تاپ (از عرض ۱۰۲۴ پیکسل) ---------- */
+@media (min-width: 1024px) {
+  /* کارت اصلی دو ستون می‌شود: تازه‌ترین قسمت و سایر قسمت‌ها، با خط جداکننده */
+  .hero {
+    grid-template-columns: 1fr 21rem;
+    gap: 0;
+  }
+
+  .latest {
+    grid-template-columns: 17rem 1fr;
+    padding-inline-end: var(--space-8);
+  }
+
+  .other-episodes {
+    border-inline-start: 1px solid var(--line);
+    padding-inline-start: var(--space-8);
+  }
+
+  .home-bottom {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-grid {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+}
+
+
+/* ---------- ۱۶. کاهش حرکت ----------
+   اگر کاربر حرکت را در سیستم‌عامل خاموش کرده باشد، هیچ حرکتی اجرا نمی‌شود. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
