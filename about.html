@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>درباره ما | پادکست تفکر محصولی</title>
+  <meta name="description" content="درباره پادکست تفکر محصولی، میزبان‌ها، کتاب The Product-Minded Engineer و پروژه کارشناسی.">
+  <!-- فونت را زودتر از بقیه شروع به دانلود کن -->
+  <link rel="preload" href="fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- لینک پرش به محتوا: فقط با کلید Tab دیده می‌شود -->
+  <a class="skip-link" href="#content">پرش به محتوای اصلی</a>
+
+  <!-- ========== سربرگ (مثل همه صفحه‌ها) ========== -->
+  <header class="site-header">
+    <div class="page">
+      <a class="brand" href="index.html">
+        <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect class="icon-body" x="6" y="4" width="34" height="40" rx="7"/>
+          <rect class="icon-spine" x="10" y="4" width="3" height="40"/>
+          <path class="icon-play" d="M21 16 L33 24 L21 32 Z"/>
+        </svg>
+        <span>
+          <span class="brand-name">پادکست تفکر محصولی</span>
+          <span class="brand-tagline">کتاب <span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span>، <span class="nowrap">فصل به فصل</span></span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="منوی اصلی">
+        <ul>
+          <li><a href="episodes.html">قسمت‌ها</a></li>
+          <!-- aria-current="page" یعنی الان در همین صفحه هستیم؛ زیرش خط خردلی می‌خورد -->
+          <li><a href="about.html" aria-current="page">درباره ما</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page" id="content">
+    <div class="about-grid">
+
+      <!-- ========== ستون اصلی: درباره پادکست و میزبان‌ها ========== -->
+      <div class="about-main">
+
+        <section class="card">
+          <h1 class="page-title">درباره ما</h1>
+          <p>
+            «پادکست تفکر محصولی» یک پادکست تصویری فارسی است که کتاب
+            <span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span>
+            را فصل به فصل توضیح می‌دهد.
+            موضوع کتاب این است که مهندس نرم‌افزار چطور مثل یک مهندس محصول فکر کند:
+            کاربرش را بشناسد، برای او سناریو بنویسد و همه بخش‌های نرم‌افزار، حتی پیام‌های خطا، را برای آدم‌ها طراحی کند.
+          </p>
+          <p>
+            این پادکست پروژه کارشناسی مهندسی کامپیوتر در دانشگاه شهید بهشتی است.
+            ویدیوها در آپارات و یوتیوب منتشر می‌شوند و اسلایدهای هر قسمت در صفحه همان قسمت قابل دانلود است.
+          </p>
+        </section>
+
+        <!-- ---- میزبان‌ها ---- -->
+        <section class="card" aria-labelledby="hosts-title">
+          <h2 class="card-title" id="hosts-title">میزبان‌ها</h2>
+          <ul class="host-list">
+            <li class="host">
+              <span class="host-name">هستی معینی</span>
+              <span class="host-role">دانشجوی کارشناسی مهندسی کامپیوتر؛ تهیه و اجرای پادکست</span>
+            </li>
+            <li class="host">
+              <span class="host-name">دکتر محمود نشاطی</span>
+              <span class="host-role">استاد راهنمای پروژه و همراه در گفت‌وگوها</span>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+      <!-- ========== ستون کناری: شناسنامه کتاب و پروژه ==========
+           dl یعنی «فهرست تعریف»: هر dt یک عنوان و هر dd مقدار آن است. -->
+      <section class="card" aria-labelledby="spec-title">
+        <h2 class="card-title" id="spec-title">شناسنامه</h2>
+        <dl class="spec-list">
+          <dt>کتاب</dt>
+          <dd><span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span></dd>
+          <dt>نویسنده</dt>
+          <dd>درو هاسکینز <span class="label-en" lang="en" dir="ltr">(Drew Hoskins)</span></dd>
+          <dt>ناشر</dt>
+          <dd><span lang="en" dir="ltr">O'Reilly</span>، ۲۰۲۵</dd>
+          <dt>پروژه</dt>
+          <dd>کارشناسی مهندسی کامپیوتر</dd>
+          <dt>دانشگاه</dt>
+          <dd>دانشگاه شهید بهشتی</dd>
+          <dt>استاد راهنما</dt>
+          <dd>دکتر محمود نشاطی</dd>
+          <dt>تماشا</dt>
+          <dd>
+            <a href="https://www.aparat.com/mavaratech.com">آپارات</a>،
+            <a href="https://www.youtube.com/@Mavaratechcorp">یوتیوب</a>
+          </dd>
+          <dt>اینستاگرام</dt>
+          <dd><a href="https://www.instagram.com/product_minded_engineer/"><span lang="en" dir="ltr">@product_minded_engineer</span></a></dd>
+        </dl>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>
