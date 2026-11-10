@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+  الگوی صفحه یک قسمت
+  ۱. این فایل را کپی کنید و اسمش را بگذارید epXX.html (مثلاً ep03.html) در همین پوشه.
+  ۲. هر جا [[...]] هست، متن را با اطلاعات قسمت عوض کنید (خود [[ ]] را هم پاک کنید).
+  ۳. در قسمت قبلی، لینک «قسمت بعدی» را به این صفحه وصل کنید.
+  ۴. قسمت را به episodes.html و index.html اضافه کنید.
+  این فایل با _ شروع می‌شود و Jekyll (که GitHub Pages با آن سایت را می‌سازد) آن را منتشر نمی‌کند.
+-->
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- [[عنوان قسمت]] را بنویسید -->
+  <title>[[عنوان قسمت]] | پادکست تفکر محصولی</title>
+  <meta name="description" content="[[یک جمله درباره این قسمت]]">
+  <!-- این صفحه داخل پوشه episodes است؛ پس با ../ یک پوشه بالاتر می‌رویم تا به css و fonts برسیم -->
+  <link rel="preload" href="../fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#content">پرش به محتوای اصلی</a>
+
+  <!-- ========== سربرگ (مثل همه صفحه‌ها؛ لازم نیست تغییرش بدهید) ========== -->
+  <header class="site-header">
+    <div class="page">
+      <a class="brand" href="../index.html">
+        <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect class="icon-body" x="6" y="4" width="34" height="40" rx="7"/>
+          <rect class="icon-spine" x="10" y="4" width="3" height="40"/>
+          <path class="icon-play" d="M21 16 L33 24 L21 32 Z"/>
+        </svg>
+        <span>
+          <span class="brand-name">پادکست تفکر محصولی</span>
+          <span class="brand-tagline">کتاب <span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span>، <span class="nowrap">فصل به فصل</span></span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="منوی اصلی">
+        <ul>
+          <!-- صفحه قسمت زیرمجموعه «قسمت‌ها» است، پس همین لینک فعال نشان داده می‌شود -->
+          <li><a href="../episodes.html" aria-current="page">قسمت‌ها</a></li>
+          <li><a href="../about.html">درباره ما</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page episode-page" id="content">
+
+    <!-- ========== ۱. معرفی قسمت و ویدیو ========== -->
+    <article class="card">
+      <a class="back-link" href="../episodes.html"><span class="arrow">→</span> همه قسمت‌ها</a>
+
+      <!-- برچسب: شماره قسمت، فصل و نام انگلیسی فصل -->
+      <p class="episode-meta">
+        # [[۰۳]]<span class="meta-dot">•</span>فصل [[۴]]<span class="meta-dot">•</span><span class="label-en" lang="en" dir="ltr">[[Chapter English Title]]</span>
+      </p>
+      <h1 class="episode-title">[[عنوان قسمت]]</h1>
+      <p class="latest-summary">[[دو سه جمله درباره اینکه این قسمت درباره چیست]]</p>
+
+      <!-- ویدیو (آپارات): وقتی منتشر شد، کد آخر آدرس را بردارید (مثلاً abc123 از aparat.com/v/abc123)
+           و کل div.video-placeholder را با این عوض کنید:
+           <iframe src="https://www.aparat.com/video/video/embed/videohash/[[کد ویدیو]]/vt/frame"
+                   title="ویدیوی [[عنوان قسمت]] در آپارات" allowfullscreen loading="lazy"></iframe> -->
+      <div class="video-frame">
+        <div class="video-placeholder">
+          <p>ویدیوی این قسمت به‌زودی در آپارات منتشر می‌شود.</p>
+          <a class="button" href="https://www.aparat.com/mavaratech.com">کانال آپارات</a>
+        </div>
+      </div>
+
+      <!-- دکمه‌ها: [[نام فایل اسلاید]] اسم PDF داخل پوشه slides است. اگر هنوز در یوتیوب نیست، آدرس کانال بماند. -->
+      <div class="action-row">
+        <a class="button button-primary" href="../slides/[[نام فایل اسلاید]]">باز کردن اسلایدها</a>
+        <!-- download یعنی مرورگر به جای باز کردن، فایل را دانلود کند -->
+        <a class="button" href="../slides/[[نام فایل اسلاید]]" download>دانلود اسلایدها <span class="label-en">(PDF)</span></a>
+        <a class="button" href="[[لینک ویدیو در یوتیوب]]">دیدن در یوتیوب</a>
+      </div>
+    </article>
+
+    <!-- ایده‌های کلیدی (۳ تا ۵ مورد): هر ایده یک <li> با <strong> و <p> است. شماره‌ها را CSS می‌گذارد. -->
+    <section class="card" aria-labelledby="ideas-title">
+      <h2 class="card-title" id="ideas-title">ایده‌های کلیدی</h2>
+      <ol class="idea-list">
+        <li>
+          <div>
+            <strong>[[ایده اول در یک جمله]]</strong>
+            <p>[[توضیح کوتاه]]</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>[[ایده دوم در یک جمله]]</strong>
+            <p>[[توضیح کوتاه]]</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>[[ایده سوم در یک جمله]]</strong>
+            <p>[[توضیح کوتاه]]</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- قسمت قبلی و بعدی: اگر اولین قسمت است لینک قبلی و اگر آخرین است لینک بعدی را پاک کنید. -->
+    <nav class="pager" aria-label="قسمت قبلی و بعدی">
+      <a class="pager-link" href="[[epقبلی.html]]">
+        <span class="pager-label"><span class="arrow">→</span> قسمت قبلی</span>
+        <span class="pager-title">[[عنوان قسمت قبلی]]</span>
+      </a>
+      <a class="pager-link pager-next" href="[[epبعدی.html]]">
+        <span class="pager-label">قسمت بعدی <span class="arrow">←</span></span>
+        <span class="pager-title">[[عنوان قسمت بعدی]]</span>
+      </a>
+    </nav>
+
+  </main>
+
+</body>
+</html>

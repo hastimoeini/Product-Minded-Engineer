@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- صفحه قسمت ۰۲ — ساخته‌شده از روی الگوی episodes/_template.html -->
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>یک خطا، دو مخاطب | پادکست تفکر محصولی</title>
+  <meta name="description" content="قسمت ۰۲: یک پیام خطا هم باید برای کاربر ساده باشد و هم برای مهندس قابل ردیابی. فصل ۳ کتاب The Product-Minded Engineer.">
+  <link rel="preload" href="../fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#content">پرش به محتوای اصلی</a>
+
+  <!-- ========== سربرگ (مثل همه صفحه‌ها) ========== -->
+  <header class="site-header">
+    <div class="page">
+      <a class="brand" href="../index.html">
+        <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect class="icon-body" x="6" y="4" width="34" height="40" rx="7"/>
+          <rect class="icon-spine" x="10" y="4" width="3" height="40"/>
+          <path class="icon-play" d="M21 16 L33 24 L21 32 Z"/>
+        </svg>
+        <span>
+          <span class="brand-name">پادکست تفکر محصولی</span>
+          <span class="brand-tagline">کتاب <span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span>، <span class="nowrap">فصل به فصل</span></span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="منوی اصلی">
+        <ul>
+          <li><a href="../episodes.html" aria-current="page">قسمت‌ها</a></li>
+          <li><a href="../about.html">درباره ما</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page episode-page" id="content">
+
+    <!-- ========== ۱. معرفی قسمت و ویدیو ========== -->
+    <article class="card">
+      <a class="back-link" href="../episodes.html"><span class="arrow">→</span> همه قسمت‌ها</a>
+
+      <p class="episode-meta">
+        # ۰۲<span class="meta-dot">•</span>فصل ۳، بخش دوم<span class="meta-dot">•</span><span class="label-en" lang="en" dir="ltr">Errors and Warnings</span>
+      </p>
+      <h1 class="episode-title">یک خطا، دو مخاطب</h1>
+      <p class="latest-summary">
+        کاربر می‌خواهد بداند «حالا چه کار کنم؟» و مهندس می‌خواهد بداند «چرا این اتفاق افتاد؟».
+        چطور یک پیام خطا برای کاربر ساده بماند و اطلاعات کافی برای پیدا کردن مشکل را هم نگه دارد؟
+      </p>
+
+      <!-- ویدیو با پخش‌کننده آپارات.
+           آدرس ویدیو در آپارات: https://www.aparat.com/v/mlfa752 ← کد ویدیو: mlfa752 -->
+      <div class="video-frame">
+        <iframe src="https://www.aparat.com/video/video/embed/videohash/mlfa752/vt/frame"
+                title="ویدیوی قسمت ۰۲، یک خطا، دو مخاطب، در آپارات"
+                allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="action-row">
+        <a class="button button-primary" href="../slides/chapter3_part2.pdf">باز کردن اسلایدها</a>
+        <a class="button" href="../slides/chapter3_part2.pdf" download>دانلود اسلایدها <span class="label-en">(PDF)</span></a>
+        <a class="button" href="https://youtu.be/Kj7hFGpH-3Y">دیدن در یوتیوب</a>
+      </div>
+    </article>
+
+    <!-- ========== ۲. ایده‌های کلیدی ========== -->
+    <section class="card" aria-labelledby="ideas-title">
+      <h2 class="card-title" id="ideas-title">ایده‌های کلیدی</h2>
+      <ol class="idea-list">
+        <li>
+          <div>
+            <strong><span lang="en" dir="ltr">Diagnostics</span> یعنی اطلاعاتی که بفهمیم چه اتفاقی افتاده و چرا</strong>
+            <p>مسیر درست این است: خطا، اطلاعات، تشخیص، اقدام. هرچه اطلاعات بهتری داشته باشیم، مسیر از خطا تا تشخیص کوتاه‌تر می‌شود. وقتی کاربر شما یک توسعه‌دهنده دیگر است، خطاها باید قابلیت اتوماسیون هم داشته باشند.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>همه خطاها را فقط <span lang="en" dir="ltr">ERROR</span> صدا نزنید</strong>
+            <p>خطای مشخص مثل <span class="label-en" lang="en" dir="ltr">PAYMENT_TIMEOUT</span> دیباگ را هدفمند می‌کند. خطاها را دسته‌بندی کنید (شبکه، احراز هویت، سیستم، ورودی نامعتبر) تا سیستم بتواند بر اساس نوع خطا پیام، رفتار و لاگ مناسب انتخاب کند.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Context را در مسیر از دست ندهید</strong>
+            <p>وقتی خطا از دیتابیس به سرویس و بعد به کاربر می‌رسد، «Request failed» یعنی بیشتر اطلاعات گم شده. مهندس باید بداند چه خطایی، کجا، چه زمانی، برای چه کسی و با چه ورودی رخ داد.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>دو لایه پیام</strong>
+            <p>پیام ساده برای کاربر («پرداخت انجام نشد؛ دوباره تلاش کنید یا کارت دیگری انتخاب کنید») و اطلاعات تشخیصی غنی برای مهندس (<span class="label-en" lang="en" dir="ltr">request_id · gateway · timestamp</span>).</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>فقط مسیر موفقیت را طراحی نکنید</strong>
+            <p>برای هر شکست ممکن (timeout، قطعی شبکه، رد شدن کارت، از کار افتادن سرویس) سه چیز را مشخص کنید: پیام کاربر، قدم بعدی، و اطلاعات تشخیصی.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- قسمت قبلی و بعدی: فعلاً آخرین قسمت است و فقط «قسمت قبلی» دارد. -->
+    <nav class="pager" aria-label="قسمت قبلی و بعدی">
+      <a class="pager-link" href="ep01.html">
+        <span class="pager-label"><span class="arrow">→</span> قسمت قبلی</span>
+        <span class="pager-title">پیام خطا از نگاه کاربر</span>
+      </a>
+    </nav>
+
+  </main>
+
+</body>
+</html>

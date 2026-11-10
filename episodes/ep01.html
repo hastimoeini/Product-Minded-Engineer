@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- صفحه قسمت ۰۱ — ساخته‌شده از روی الگوی episodes/_template.html -->
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>پیام خطا از نگاه کاربر | پادکست تفکر محصولی</title>
+  <meta name="description" content="قسمت ۰۱: چرا کاربرها از پیام‌های خطا فراری‌اند و یک پیام خطای خوب چه ویژگی‌هایی دارد؟ فصل ۳ کتاب The Product-Minded Engineer.">
+  <!-- این صفحه داخل پوشه episodes است؛ با ../ یک پوشه بالاتر می‌رویم -->
+  <link rel="preload" href="../fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#content">پرش به محتوای اصلی</a>
+
+  <!-- ========== سربرگ (مثل همه صفحه‌ها) ========== -->
+  <header class="site-header">
+    <div class="page">
+      <a class="brand" href="../index.html">
+        <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect class="icon-body" x="6" y="4" width="34" height="40" rx="7"/>
+          <rect class="icon-spine" x="10" y="4" width="3" height="40"/>
+          <path class="icon-play" d="M21 16 L33 24 L21 32 Z"/>
+        </svg>
+        <span>
+          <span class="brand-name">پادکست تفکر محصولی</span>
+          <span class="brand-tagline">کتاب <span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span>، <span class="nowrap">فصل به فصل</span></span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="منوی اصلی">
+        <ul>
+          <li><a href="../episodes.html" aria-current="page">قسمت‌ها</a></li>
+          <li><a href="../about.html">درباره ما</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page episode-page" id="content">
+
+    <!-- ========== ۱. معرفی قسمت و ویدیو ========== -->
+    <article class="card">
+      <a class="back-link" href="../episodes.html"><span class="arrow">→</span> همه قسمت‌ها</a>
+
+      <p class="episode-meta">
+        # ۰۱<span class="meta-dot">•</span>فصل ۳، بخش اول<span class="meta-dot">•</span><span class="label-en" lang="en" dir="ltr">Errors and Warnings</span>
+      </p>
+      <h1 class="episode-title">پیام خطا از نگاه کاربر</h1>
+      <p class="latest-summary">
+        چرا کاربرها از پیام‌های خطای سیستم ما فراری‌اند، و چرا بهترین مهندس‌ها گاهی بدترین پیام‌های خطا را می‌نویسند؟
+        در این قسمت می‌بینیم شکست هم بخشی از تجربه محصول است و باید مثل بقیه محصول طراحی شود.
+      </p>
+
+      <!-- ویدیو با پخش‌کننده آپارات.
+           آدرس ویدیو در آپارات: https://www.aparat.com/v/lmt0w1j ← کد ویدیو: lmt0w1j -->
+      <div class="video-frame">
+        <iframe src="https://www.aparat.com/video/video/embed/videohash/lmt0w1j/vt/frame"
+                title="ویدیوی قسمت ۰۱، پیام خطا از نگاه کاربر، در آپارات"
+                allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="action-row">
+        <a class="button button-primary" href="../slides/Chapter3-part1.pdf">باز کردن اسلایدها</a>
+        <a class="button" href="../slides/Chapter3-part1.pdf" download>دانلود اسلایدها <span class="label-en">(PDF)</span></a>
+        <a class="button" href="https://youtu.be/Cd2IlkqCJvw">دیدن در یوتیوب</a>
+      </div>
+    </article>
+
+    <!-- ========== ۲. ایده‌های کلیدی ========== -->
+    <section class="card" aria-labelledby="ideas-title">
+      <h2 class="card-title" id="ideas-title">ایده‌های کلیدی</h2>
+      <ol class="idea-list">
+        <li>
+          <div>
+            <strong>اول بفهمید خطا مال کیست: کاربر یا سیستم؟</strong>
+            <p>خطای کاربر (ورودی نامعتبر، فرمت اشتباه، نداشتن دسترسی) راهنمایی واضح برای اصلاح می‌خواهد. خطای سیستم (قطعی دیتابیس، timeout، باگ) یعنی پنهان کردن جزئیات فنی از کاربر و ثبت دقیقش برای عیب‌یابی.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>پیام خوب به سه سؤال جواب می‌دهد</strong>
+            <p>چه اتفاقی افتاد؟ چرا؟ و حالا چه کار کنم؟ «کارت شما توسط بانک رد شد؛ با کارت دیگری دوباره تلاش کنید» هر سه را جواب می‌دهد، اما <span lang="en" dir="ltr">«Payment failed»</span> هیچ‌کدام را.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>خطا نباید کاربر را در بن‌بست بگذارد</strong>
+            <p>هدف خطا فقط اطلاع دادن نیست، کمک به ادامه مسیر است. «رمز عبور باید حداقل ۸ کاراکتر باشد» راه را نشان می‌دهد، «رمز عبور نامعتبر است» نه.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>هرچه زودتر، بهتر</strong>
+            <p>خطا را همان‌جایی بگویید که قابل اصلاح است: ورودی کاربر، بررسی لحظه‌ای، بازخورد فوری. زودتر گفتن هم ارزان‌تر است و هم برای کاربر روشن‌تر.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ========== ۳. قسمت قبلی و بعدی ==========
+         این اولین قسمت است، پس فقط لینک «قسمت بعدی» دارد. -->
+    <nav class="pager" aria-label="قسمت قبلی و بعدی">
+      <a class="pager-link pager-next" href="ep02.html">
+        <span class="pager-label">قسمت بعدی <span class="arrow">←</span></span>
+        <span class="pager-title">یک خطا، دو مخاطب</span>
+      </a>
+    </nav>
+
+  </main>
+
+</body>
+</html>
