@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- lang="fa" یعنی زبان صفحه فارسی است؛ dir="rtl" یعنی متن از راست به چپ نوشته می‌شود -->
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <!-- این خط باعث می‌شود صفحه روی موبایل در اندازه درست نمایش داده شود، نه کوچک‌شده -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>پادکست تفکر محصولی</title>
+  <meta name="description" content="پادکست تصویری فارسی درباره کتاب The Product-Minded Engineer؛ پروژه کارشناسی مهندسی کامپیوتر دانشگاه شهید بهشتی.">
+  <!-- فونت را زودتر از بقیه شروع به دانلود کن تا متن کمتر با فونت دیگری دیده شود -->
+  <link rel="preload" href="fonts/Vazirmatn-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- فایل استایل مشترک همه صفحه‌ها -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- لینک پرش به محتوا: فقط با کلید Tab دیده می‌شود (برای کاربران کیبورد) -->
+  <a class="skip-link" href="#content">پرش به محتوای اصلی</a>
+
+  <!-- ========== سربرگ: نشان سایت و منوی اصلی (در همه صفحه‌ها یکسان است) ========== -->
+  <header class="site-header">
+    <div class="page">
+      <a class="brand" href="index.html">
+        <!-- آیکون سایت: دفترچه با علامت پخش، با SVG کشیده شده (رنگ‌هایش از style.css) -->
+        <svg class="brand-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <rect class="icon-body" x="6" y="4" width="34" height="40" rx="7"/>
+          <rect class="icon-spine" x="10" y="4" width="3" height="40"/>
+          <path class="icon-play" d="M21 16 L33 24 L21 32 Z"/>
+        </svg>
+        <span>
+          <span class="brand-name">پادکست تفکر محصولی</span>
+          <span class="brand-tagline">کتاب <span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span>، <span class="nowrap">فصل به فصل</span></span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="منوی اصلی">
+        <ul>
+          <li><a href="episodes.html">قسمت‌ها</a></li>
+          <li><a href="about.html">درباره ما</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- id="content" مقصد لینک «پرش به محتوا» است -->
+  <main class="page" id="content">
+
+    <!-- ========== کارت اصلی: تازه‌ترین قسمت (راست) و سایر قسمت‌ها (چپ) ========== -->
+    <section class="card hero">
+
+      <!-- ---- تازه‌ترین قسمت ----
+           وقتی قسمت جدیدی منتشر شد، محتوای این بخش را با قسمت جدید عوض کنید. -->
+      <article class="latest" aria-labelledby="latest-title">
+        <!-- جلد قسمت (با CSS ساخته شده، بدون عکس) -->
+        <a class="cover" href="episodes/ep02.html" aria-hidden="true" tabindex="-1">
+          <span class="cover-number">02</span>
+          <span class="cover-title">Errors and Warnings</span>
+          <span class="cover-chapter">CHAPTER 03 · PART 2</span>
+        </a>
+
+        <div>
+          <p class="episode-meta">
+            # ۰۲<span class="meta-dot">•</span>فصل ۳، بخش دوم
+          </p>
+          <h1 class="latest-title" id="latest-title">یک خطا، دو مخاطب</h1>
+          <p class="latest-summary">
+            کاربر می‌خواهد بداند «حالا چه کار کنم؟» و مهندس می‌خواهد بداند «چرا این اتفاق افتاد؟».
+            چطور یک پیام خطا برای کاربر ساده بماند و اطلاعات کافی برای پیدا کردن مشکل را هم نگه دارد؟
+          </p>
+          <div class="action-row">
+            <a class="button button-primary" href="episodes/ep02.html">ببینید <span class="arrow">←</span></a>
+            <a class="button" href="slides/chapter3_part2.pdf">اسلایدها</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ---- سایر قسمت‌ها ----
+           هر قسمت یک <li> است. برای قسمت تازه، یک <li> به بالای فهرست اضافه کنید. -->
+      <aside class="other-episodes" aria-labelledby="others-title">
+        <div class="other-episodes-head">
+          <h2 id="others-title">سایر قسمت‌ها</h2>
+          <a class="button" href="episodes.html">آرشیو قسمت‌ها <span class="arrow">←</span></a>
+        </div>
+        <ul class="episode-list">
+          <li class="episode-row">
+            <a href="episodes/ep01.html">
+              <span class="cover cover-small" aria-hidden="true">
+                <span class="cover-number">01</span>
+                <span class="cover-title">Errors and Warnings</span>
+              </span>
+              <span>
+                <span class="episode-row-title">پیام خطا از نگاه کاربر</span>
+                <span class="episode-meta"># ۰۱<span class="meta-dot">•</span>فصل ۳، بخش اول</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+    </section>
+
+    <!-- ========== ردیف پایین: کجا ببینیم + معرفی کوتاه ========== -->
+    <div class="home-bottom">
+
+      <!-- ---- معرفی کوتاه پادکست ---- -->
+      <section class="card home-about" aria-labelledby="about-title">
+        <h2 class="card-title" id="about-title">این پادکست درباره چیست؟</h2>
+        <p>
+          در هر قسمت یک فصل از کتاب
+          <span class="book-name" lang="en" dir="ltr">The Product-Minded Engineer</span>
+          را با مثال و به زبان ساده توضیح می‌دهیم:
+          اینکه یک مهندس نرم‌افزار چطور کاربرش را بشناسد، سناریو بنویسد و حتی پیام‌های خطا را برای آدم‌ها طراحی کند.
+        </p>
+        <p>
+          این پادکست پروژه کارشناسی مهندسی کامپیوتر دانشگاه شهید بهشتی است، با راهنمایی دکتر محمود نشاطی.
+        </p>
+        <a class="button" href="about.html">درباره ما <span class="arrow">←</span></a>
+      </section>
+
+      <!-- کجا ببینیم: آیکون‌ها با SVG کشیده شده‌اند. برای عوض کردن آدرس هر کانال، href همان خط را عوض کنید. -->
+      <section class="card" aria-labelledby="watch-title">
+        <h2 class="card-title" id="watch-title">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9 L15 12 L10 15 Z"/></svg>
+          از اینجاها ببینید
+        </h2>
+        <ul class="platform-list">
+          <li>
+            <a class="platform" href="https://www.aparat.com/mavaratech.com">
+              <span class="platform-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5 L15.5 12 L10 15.5 Z"/></svg></span>
+              آپارات
+            </a>
+          </li>
+          <li>
+            <a class="platform" href="https://www.youtube.com/@Mavaratechcorp">
+              <span class="platform-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5 L14 12 L10 14.5 Z"/></svg></span>
+              یوتیوب
+            </a>
+          </li>
+          <li>
+            <a class="platform" href="https://www.instagram.com/product_minded_engineer/">
+              <span class="platform-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+              اینستاگرام
+            </a>
+          </li>
+          <li>
+            <a class="platform" href="https://github.com/hastimoeini/Product-Minded-Engineer">
+              <span class="platform-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 8 L5 12 L9 16 M15 8 L19 12 L15 16"/></svg></span>
+              اسلایدها در گیت‌هاب
+            </a>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
